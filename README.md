@@ -1,81 +1,62 @@
-[Mozc - a Japanese Input Method Editor designed for multi-platform](https://github.com/google/mozc)
-===================================
+# Mozc + UT Dictionary Build
 
-Copyright 2010-2026 Google LLC
+A personal fork and dictionary-integrated build based on the original Mozc project.
 
-Mozc is a Japanese Input Method Editor (IME) designed for multi-platform such as
-Android OS, Apple macOS, Chromium OS, GNU/Linux and Microsoft Windows.  This
-OpenSource project originates from
-[Google Japanese Input](http://www.google.com/intl/ja/ime/).
+This repository only integrates additional dictionary data into Mozc.
+All Mozc source code comes from the original Google Mozc project.
 
-Mozc is not an officially supported Google product.
+---
 
-Build Status
-------------
+# 简介
 
-| Linux | Windows | macOS | Android lib |
-|:-----:|:-------:|:-----:|:-----------:|
-| [![Linux](https://github.com/google/mozc/actions/workflows/linux.yaml/badge.svg)](https://github.com/google/mozc/actions/workflows/linux.yaml) | [![Windows](https://github.com/google/mozc/actions/workflows/windows.yaml/badge.svg)](https://github.com/google/mozc/actions/workflows/windows.yaml) | [![macOS](https://github.com/google/mozc/actions/workflows/macos.yaml/badge.svg)](https://github.com/google/mozc/actions/workflows/macos.yaml) | [![Android lib](https://github.com/google/mozc/actions/workflows/android.yaml/badge.svg)](https://github.com/google/mozc/actions/workflows/android.yaml) |
+这是基于 Google Mozc 的个人 Fork 项目。
 
+本项目主要工作：
 
-What's Mozc?
-------------
-For historical reasons, the project name *Mozc* has two different meanings:
+- Fork 原版 Mozc 源码
+- 使用词库整合工具生成扩展词库
+- 将 UT/SKK 等词库数据整合进 Mozc
+- 使用 GitHub Actions 自动构建 Windows MSI 安装包
 
-1. Internal code name of Google Japanese Input that is still commonly used
-   inside Google.
-2. Project name to release a subset of Google Japanese Input in the form of
-   source code under OSS license without any warranty nor user support.
+除此之外没有对 Mozc 核心功能进行修改。
 
-In this repository, *Mozc* means the second definition unless otherwise noted.
+## 词库来源与工具
 
-Detailed differences between Google Japanese Input and Mozc are described in [About Branding](docs/about_branding.md).
+本项目使用以下开源项目进行词库整合：
 
-For policies on vocabulary and conversion results, see
-[Vocabulary Policy](VOCABULARY_POLICY.md).
+- mozcdic-ut-skk-jisyo  
+  https://github.com/utuhiro78/mozcdic-ut-skk-jisyo
 
-Build Instructions
-------------------
+- merge-ut-dictionaries  
+  https://github.com/utuhiro78/merge-ut-dictionaries
 
-* [How to build Mozc for Android](docs/build_mozc_for_android.md): for Android library (`libmozc.so`)
-* [How to build Mozc for Linux](docs/build_mozc_for_linux.md): for Linux desktop
-* [How to build Mozc for macOS](docs/build_mozc_in_osx.md): for macOS build
-* [How to build Mozc for Windows](docs/build_mozc_in_windows.md): for Windows
+上述项目用于生成和整合 Mozc 可使用的扩展词典格式。
 
-Release Plan
-------------
+感谢相关开源项目作者的工作。
 
-tl;dr. **There is no stable version.**
+## 说明
 
-As described in [About Branding](docs/about_branding.md) page, Google does
-not promise any official QA for OSS Mozc project.  Because of this,
-Mozc does not have a concept of *Stable Release*.  Instead we change version
-number every time when we introduce non-trivial change.  If you are
-interested in packaging Mozc source code, or developing your own products
-based on Mozc, feel free to pick up any version.  They should be equally
-stable (or equally unstable) in terms of no official QA process.
+本项目不是 Google 官方产品，也不是 Mozc 官方维护版本。
 
-[Release History](docs/release_history.md) page may have additional
-information and useful links about recent changes.
+Mozc 原始项目：
 
-License
--------
+https://github.com/google/mozc
 
-All Mozc code written by Google is released under
-[The BSD 3-Clause License](http://opensource.org/licenses/BSD-3-Clause).
-For third party code under [src/third_party](src/third_party) directory,
-see each sub directory to find the copyright notice.  Note also that
-outside [src/third_party](src/third_party) following directories contain
-third party code.
+所有 Mozc 源码、第三方组件以及词库数据均遵循其各自原始许可证。
 
-### [src/data/dictionary_oss/](src/data/dictionary_oss)
-Mixed.
-See [src/data/dictionary_oss/README.txt](src/data/dictionary_oss/README.txt)
+## 构建
 
-### [src/data/test/dictionary/](src/data/test/dictionary)
-The same as [src/data/dictionary_oss/](src/data/dictionary_oss).
-See [src/data/dictionary_oss/README.txt](src/data/dictionary_oss/README.txt)
+Windows 版本通过 GitHub Actions 自动构建。
 
-### [src/data/test/stress_test/](src/data/test/stress_test)
-Public Domain.  See the comment in
-[src/data/test/stress_test/sentences.txt](src/data/test/stress_test/sentences.txt)
+构建产物可在：
+
+- GitHub Actions Artifacts
+- Releases 页面
+
+获取。
+
+## License
+
+Mozc 本体遵循原项目 BSD 3-Clause License。
+
+额外整合的词库数据遵循其各自来源许可证。
